@@ -1,0 +1,9 @@
+{% if trades %}
+    <ul>
+    {% for trade in trades %}
+        <li>{{ trade.strategy }} profit: {{ trade.profit }}{{ trade.currency }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No trades are available.</p>
+{% endif %}
