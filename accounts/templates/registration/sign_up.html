@@ -1,5 +1,5 @@
 
-<form action="/accounts/sign-up" method="post">
+<form action="{% url 'sign_up' %}" method="post">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Submit">
