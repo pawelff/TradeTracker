@@ -9,6 +9,9 @@ class Strategy(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta: 
+        verbose_name_plural = "strategies"
+
 
 class Trade(models.Model):
     strategy = models.ForeignKey(Strategy, on_delete=models.CASCADE)
