@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
+from django.contrib.auth import login, authenticate
 from .forms import CustomUserCreationForm
 
 
@@ -8,8 +9,12 @@ def sign_up(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            # TODO: login user and change redirect
-            return HttpResponseRedirect('/accounts/login/')
+            username = request.POST['username']
+            password = request.POST['password1']
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return HttpResponseRedirect('/trades/')
 
     else:
         form = CustomUserCreationForm()

@@ -4,6 +4,11 @@ from django.http import HttpResponse
 from .models import Trade
 
 
-def index(req):
+def index(request):
+    username = request.user.get_username()
     trades = Trade.objects.all()
-    return render(req, 'trades/index.html', {'trades': trades})
+    context = {
+        'trades': trades,
+        'username': username,
+    }
+    return render(request, 'trades/index.html', context)
